@@ -24,10 +24,9 @@ public class MainActivity extends AppCompatActivity {
         chartView.setTextSize(R.dimen.test);
         chartView.setTextColor(android.R.color.black);
 
-        chartView.addSlice("Beef", 30);
-        chartView.addSlice("Vegetarian", 20);
-        chartView.addSlice("Pork", 40);
-        chartView.addSlice("Other", 10);
+        chartView.addSlice("Beef", 240);
+        chartView.addSlice("Pork", 60);
+        chartView.addSlice("Vegetarian", 60);
 
         chartView.draw();
         chartView.setOnSliceClickListener(new PieView.onSliceClickListener() {

@@ -28,6 +28,7 @@ public class PieView extends View {
     private List<Paint> mPiePaint = new ArrayList<>();
 
     private List<Map<Float, Float>> mPieRange = new ArrayList<>();
+    private List<Float> mPieTotal = new ArrayList<>();
 
     private RectF mRectF;
     private Paint mTextPaint, mBlankPaint, mSeparatorPaint;
@@ -105,24 +106,24 @@ public class PieView extends View {
     /**
      * add title, value percentage to the chart
      *
-     * @param title      The title of the slice
-     * @param percentage The percentage of the slice
+     * @param title The title of the slice
+     * @param value The value of the slice
      */
-    public void addSlice(String title, float percentage) {
+    public void addSlice(String title, float value) {
         Random random = new Random();
         int randomColor = Color.rgb(random.nextInt(256), random.nextInt(256), random.nextInt(256));
 
-        this.addSlice(title, percentage, randomColor);
+        this.addSlice(title, value, randomColor);
     }
 
     /**
      * add title, value percentage to the chart
      *
-     * @param title      The title of the slice
-     * @param percentage The percentage of the slice
-     * @param color      The resource color
+     * @param title The title of the slice
+     * @param value The value of the slice
+     * @param color The resource color
      */
-    public void addSlice(String title, float percentage, int color) {
+    public void addSlice(String title, float value, int color) {
 
         Paint paintProgress = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintProgress.setStyle(Paint.Style.FILL);
@@ -131,28 +132,14 @@ public class PieView extends View {
         mPiePaint.add(paintProgress);
         mPieTexts.add(title);
 
-        float angle = calculateAngle(percentage);
-
-        Map<Float, Float> temp = new TreeMap<>();
-
-        if (mPieRange.size() == 0) {
-
-            temp.put(mStartAngle, angle);
-            mLastAngle += angle + mStartAngle;
-
-        } else {
-
-            temp.put(mLastAngle, angle);
-            mLastAngle += angle;
-        }
-
-        mPieRange.add(temp);
+        mPieTotal.add(value);
     }
 
     /**
      * start drawing the pie
      */
     public void draw() {
+        preparePie();
         init();
         invalidate();
     }
@@ -256,6 +243,34 @@ public class PieView extends View {
 
     public interface onSliceClickListener {
         void onSliceClick(int position, float percentage);
+    }
+
+    private void preparePie() {
+
+        float total = 0;
+        for (Float f : mPieTotal) {
+            total += f;
+        }
+
+        for (Float f : mPieTotal) {
+
+            float angle = calculateAngle((f / total) * 100);
+
+            Map<Float, Float> temp = new TreeMap<>();
+
+            if (mPieRange.size() == 0) {
+
+                temp.put(mStartAngle, angle);
+                mLastAngle += angle + mStartAngle;
+
+            } else {
+
+                temp.put(mLastAngle, angle);
+                mLastAngle += angle;
+            }
+
+            mPieRange.add(temp);
+        }
     }
 
     private float calculateRadius(int width, int height) {
