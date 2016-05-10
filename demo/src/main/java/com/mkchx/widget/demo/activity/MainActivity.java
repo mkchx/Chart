@@ -1,4 +1,4 @@
-package com.mkchx.widget.demoapp.activity;
+package com.mkchx.widget.demo.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.mkchx.widget.chart.PieView;
-import com.mkchx.widget.demoapp.R;
+import com.mkchx.widget.demo.R;
 
 public class MainActivity extends AppCompatActivity {
 

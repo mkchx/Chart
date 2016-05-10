@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Chart.iml" filepath="$PROJECT_DIR$/Chart.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ChartView/ChartView.iml" filepath="$PROJECT_DIR$/ChartView/ChartView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demoapp/demoapp.iml" filepath="$PROJECT_DIR$/demoapp/demoapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demoapp.iml" filepath="$PROJECT_DIR$/demo/demoapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/ChartView.iml" filepath="$PROJECT_DIR$/lib/ChartView.iml" />
     </modules>
   </component>
 </project>
